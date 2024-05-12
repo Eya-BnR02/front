@@ -1,0 +1,86 @@
+<app-navbar [niveaux]="niveaux"></app-navbar>
+
+<div class="container-fluid bg-primary py-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white">مرحبا بكم في فضاء الولي</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <!-- Form Section -->
+            <div class="card mb-4" >
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-right">إضافة تلميذ جديد</h2>
+                </div>
+                <div class="card-body">
+                    <form id="myForm" (submit)="onSubmit()">
+                        <div class="form-group text-right">
+                            <label for="field1">الإسم</label>
+                            <input type="text" class="form-control text-right" id="field1" placeholder="الإسم" [(ngModel)]="formData.firstname" name="field1" required pattern="[ء-يa-zA-Z\s]{1,}">
+                            <div *ngIf="!formData.firstname.valid && formData.firstname.touched" class="text-danger">الإسم مطلوب ويجب أن يحتوي على أحرف فقط</div>
+                        </div>
+                        <div class="form-group text-right">
+                            <label for="field2">اللقب</label>
+                            <input type="text" class="form-control text-right" id="field2" placeholder="اللقب" [(ngModel)]="formData.lastname" name="field2" required pattern="[ء-يa-zA-Z\s]{1,}">
+                            <div *ngIf="!formData.lastname.valid && formData.lastname.touched" class="text-danger">اللقب مطلوب ويجب أن يحتوي على أحرف فقط</div>
+                        </div>
+                        <div class="form-group text-right">
+                            <label for="list">القسم</label>
+                            <select class="form-control text-right" id="list" [(ngModel)]="formData.niveau" name="list" required>
+                                <option value="السنة أولى إبتدائي">السنة أولى إبتدائي</option>
+                                <option value="السنة ثانية إبتدائي">السنة ثانية إبتدائي</option>
+                                <option value="السنة ثالثة إبتدائي">السنة ثالثة إبتدائي</option>
+                                <option value="السنة رابعة إبتدائي">السنة رابعة إبتدائي</option>
+                                <option value="السنة خامسة إبتدائي">السنة خامسة إبتدائي</option>
+                                <option value="السنة سادسة إبتدائي">السنة سادسة إبتدائي</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary text-right">إضافة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Table Section -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0 text-right">قائمة التلاميذ</h2>
+                </div>
+                <div class="card-body text-right">
+                    <table class="table text-right">
+                        <thead>
+                            <tr>
+                                <th>القسم</th>
+                                <th>اللقب</th>
+                                <th>الإسم</th>
+                                <th>إجراءات</th> <!-- New column for actions -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let eleve of eleves">
+                                <td>{{ eleve.niveau }}</td>
+                                <td>{{ eleve.lastname }}</td>
+                                <td>{{ eleve.firstname }}</td>
+                                <td>
+                                    <button class="btn btn-primary" (click)="editEleve(eleve.id)">تعديل</button>
+                                    <button class="btn btn-danger" (click)="deleteEleve(eleve.id)">حذف</button>
+                                </td> <!-- Edit and Delete buttons -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    

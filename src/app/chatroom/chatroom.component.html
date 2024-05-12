@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="container-fluid bg-light" style="height: 100vh;">
+  <div class="row justify-content-center align-items-center h-100">
+    <div class="col-md-6">
+      <!-- Chat panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading bg-primary text-center text-white">
+          <h3 class="panel-title">Chat</h3>
+        </div>
+        <div class="panel-body bg-white">
+          <!-- Chat history panel -->
+          <div class="chat-history">
+            <!-- Display chat history using *ngFor directive -->
+            <div *ngFor="let message of chatHistory" class="message">
+              <div class="message-content">
+                <!-- Display message text -->
+                <p>{{ message.content }}</p>
+                <!-- Display sender name and timestamp -->
+                <div class="message-info">
+                  <span class="message-sender">{{ message.sender }}</span>
+                  <span class="message-timestamp">{{ message.timestamp }}</span>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer bg-light">
+          <!-- Form for chat message input -->
+          <form (ngSubmit)="sendMessage()" class="message-form">
+            <!-- Text area for message input -->
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Type your message here..." [(ngModel)]="messageText" name="messageText" required="">
+              <!-- Attach file button with just the icon -->
+              <div class="input-group-append">
+                <label class="input-group-text bg-info text-white" for="attachFileInput">
+                  <i class="fas fa-paperclip"></i>
+                </label>
+                <input type="file" id="attachFileInput" style="display: none;">
+              </div>
+              <!-- Send message button -->
+              <span class="input-group-btn">
+                <button class="btn btn-primary">Send</button>
+              </span>
+            </div>
+            <!-- Optional: add other buttons or elements -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

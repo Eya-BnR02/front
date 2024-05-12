@@ -1,0 +1,42 @@
+/* CSS for the buttons */
+.side-button {
+    background-color: #007bff; /* Primary color */
+    color: white;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 200px; /* Adjust as needed */
+  }
+  
+  .side-button:hover {
+    background-color: #0056b3; /* Darker shade of primary color */
+  }
+  
+  /* Additional styles for spacing */
+  .container {
+    margin-top: 0px;
+  }
+  .button-container {
+    position: absolute;
+    top: 70%;
+    right: 20px; /* Adjust the distance from the right side */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .side-button {
+    margin-bottom: 10px; /* Adjust spacing between buttons */
+  }
+  
+  #form-container {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  

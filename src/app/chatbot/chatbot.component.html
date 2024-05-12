@@ -1,0 +1,19 @@
+<div class="chat-toggle" (click)="toggleChatContainer()">
+  <i class="fas fa-comment-alt"></i> 
+</div>
+
+<div class="chat-container" [ngClass]="{ 'show': chatVisible }">
+  <div class="chat-header">Chatbot</div> <!-- Ajout du titre -->
+  <div id="chat-box">
+      <div *ngFor="let message of messages" class="message-container">
+          <div *ngIf="message.isUserMessage; else botMessage" class="user-message">{{ message.content }}</div>
+          <ng-template #botMessage>
+              <div class="bot-message">{{ message.content }}</div>
+          </ng-template>
+      </div>
+  </div>
+  <div class="input-container">
+      <input type="text" [(ngModel)]="userInput" placeholder="Type your message...">
+      <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

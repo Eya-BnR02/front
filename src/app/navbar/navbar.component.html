@@ -1,0 +1,23 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a routerLink="/home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>العباقرة الصغار</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <!-- Iterate over niveaux array to display buttons -->
+            <button *ngFor="let niveau of niveaux" (click)="navigateToNiveau(niveau)" class="btn btn-outline-primary ms-lg-3 py-2 px-4">{{ niveau }}</button>
+            <button class="btn btn-outline-dark ms-lg-3 py-2 px-4" routerLink="/chat" >الدردشة</button>
+            <button class="btn btn-outline-dark ms-lg-3 py-2 px-4" routerLink="/parent" >عودة</button>
+            <button class="btn btn-outline-primary ms-lg-3 py-2 px-4" routerLink="/progression" >تقدم التلميذ</button>
+            <button class="btn btn-outline-danger ms-lg-3 py-2 px-4" (click)="logout()">تسجيل الخروج</button>
+            <!-- Chat button -->
+           
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+

@@ -1,0 +1,208 @@
+<app-chatbot></app-chatbot>
+<app-navad></app-navad>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="page-title mb-0">لوحة القيادة </h3>
+                </div>
+                <div class="col-md-6">
+                    <ul class="breadcrumb mb-0 p-0 float-right">
+                        <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+                        <li class="breadcrumb-item"><span>لوحة القيادة </span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget dash-widget5">
+                    <span class="float-left"><img src="assets/img2/dash/dash-1.png" alt="" width="80"></span>
+                    <div class="dash-widget-info text-right">
+                        <span>تلاميذ</span>
+                        <h3>{{ eleveCount }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget dash-widget5">
+                    <div class="dash-widget-info text-left d-inline-block">
+                        <span>معلمين</span>
+                        <h3>{{ eleveCount }}</h3>
+                    </div>
+                    <span class="float-right"><img src="assets/img2/dash/dash-2.png" width="80" alt=""></span>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                <div class="dash-widget dash-widget5">
+                    <span class="float-left"><img src="assets/img2/dash/dash-3.png" alt="" width="80"></span>
+                    <div class="dash-widget-info text-right">
+                        <span>أولياء </span>
+                        <h3>{{ eleveCount }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col-sm-6 text-sm-left">
+                    <div class=" mt-sm-0 mt-2">
+                      <button class="btn btn-outline-danger mr-2"><img src="assets/img2/pdf.png" alt="" height="18"><span
+                          class="ml-2">PDF</span></button>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 text-sm-right">
+                    <div class="page-title">
+                      كل التلاميذ
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table custom-table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th class="text-center">الإجراء</th>
+                        <th>القسم</th>
+                        <th>ID</th>
+                        <th>الإسم و اللقب</th>
+                        <!-- Add more table headers for other fields -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let eleve of eleves">
+                        <td class="text-center">
+                          <button class="btn btn-primary btn-sm mb-1" (click)="editEleve(eleve)">
+                            <i class="far fa-edit"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm mb-1" (click)="deleteEleve(eleve.id)">
+                            <i class="far fa-trash-alt"></i>
+                          </button>
+                        </td>
+                        <td>{{ eleve.niveau }}</td>
+                        <td>{{ eleve.id }}</td>
+                        <td>
+                          <h2>
+                            <a>{{ eleve.firstname }} {{ eleve.lastname }}</a>
+                          </h2>
+                        </td>
+                        <!-- Add more table cells for other fields -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Form for editing eleve -->
+        <div *ngIf="isFormVisible" class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Edit Eleve</h4>
+              </div>
+              <div class="card-body">
+                <form (submit)="updateEleve()">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="formData.firstname" name="firstname" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="formData.lastname" name="lastname" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Niveau</label>
+                    <input type="text" class="form-control" [(ngModel)]="formData.niveau" name="niveau" required>
+                  </div>
+                  <!-- Add more form fields for other eleve attributes -->
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button type="button" class="btn btn-secondary ml-2" (click)="isFormVisible = false">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+<!-- Add a table to display reclamations -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Reclamations</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table custom-table">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Iterate over reclamations and display them in rows -->
+              <tr *ngFor="let reclamation of reclamations">
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.title }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.status }}</td>
+      
+                <td>
+                  <!-- Edit button to open the edit form -->
+                  <button class="btn btn-primary btn-sm mr-1" (click)="updateReclamation()">Edit</button>
+                  <!-- Delete button to delete the reclamation -->
+                  <button class="btn btn-danger btn-sm" (click)="deleteReclamation(reclamation.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Form for editing reclamation -->
+<div class="row" *ngIf="isEditFormVisible">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Edit Reclamation</h4>
+      </div>
+      <div class="card-body">
+        <form (submit)="updateReclamation()">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="recData.title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="recData.description" name="description" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" [(ngModel)]="recData.status" name="status" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

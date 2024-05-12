@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Create Reclamation</h4>
+    </div>
+    <div class="card-body">
+      <form (submit)="submitReclamation()">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" [(ngModel)]="formData.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" [(ngModel)]="formData.description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" [(ngModel)]="formData.status" name="status" required>
+            <option value="New">New</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  

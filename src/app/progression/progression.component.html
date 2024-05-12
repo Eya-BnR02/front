@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-right">قائمة التلاميذ مع التقدم</h2>
+          </div>
+          <div class="card-body text-right">
+            <table class="table text-right">
+              <thead>
+                <tr>
+                  <th>القسم</th>
+                  <th>اللقب</th>
+                  <th>الإسم</th>
+                  <th>التقدم</th>
+                  <th>تحديث التقدم</th>
+                  <th>حفظ التقدم</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let eleve of eleves">
+                  <td>{{ eleve.niveau }}</td>
+                  <td>{{ eleve.lastname }}</td>
+                  <td>{{ eleve.firstname }}</td>
+                  <td>{{ calculateProgress(eleve.progress) }}</td>
+                  <td>
+                    <input type="number" [(ngModel)]="eleve.progress" min="0" max="100" step="1">
+                    <button class="btn btn-primary" (click)="updateProgress(eleve.id, eleve.progress)">تحديث</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-success" (click)="saveProgress(eleve.id, eleve.progress)">حفظ</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

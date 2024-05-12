@@ -1,0 +1,16 @@
+ /* Styles pour les images de même hauteur et largeur */
+ .image-equal-height {
+    width: 100%;
+    height: 200px; /* Vous pouvez ajuster la hauteur souhaitée ici */
+    object-fit: cover; /* Pour que l'image soit redimensionnée pour remplir complètement le conteneur tout en conservant son rapport d'aspect */
+}
+
+
+
+ 
+
+        /* Classe personnalisée pour les images carrées */
+        .square-image {
+          height: 900px; /* Ajustez cette hauteur selon vos besoins */
+          object-fit: cover; /* Permet d'ajuster l'image tout en conservant son rapport d'aspect */
+        }
